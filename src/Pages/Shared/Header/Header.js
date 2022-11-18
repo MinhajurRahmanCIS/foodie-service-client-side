@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.png'
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch();
+    }
     const menuItems = <>
         <li className='font-semibold'><Link to='/'>Home</Link></li>
-        <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
+        <li className='font-semibold'><Link to='/'>Blog</Link></li>
+        
     </>
+
+    const account = <>
+        {
+            user?.email ?
+                <>
+                    <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
+                    <li><Link onClick={handleLogOut}>Logout</Link></li>
+                </>
+                :
+                <> 
+                <li><Link to='/login'>Login</Link></li>
+                <li><Link to='/signup'>Signup</Link></li>
+                </>
+               
+        }
+    </>
+
+
     return (
         <div className="navbar h-20 mb-12 pt-12 bg-base-100">
             <div className="navbar-start">
@@ -30,21 +57,15 @@ const Header = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" />
+                            <img src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png" alt='' />
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <Link className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </Link>
-                        </li>
-                        <li><Link>Settings</Link></li>
-                        <li><Link>Logout</Link></li>
+                      
+                        {account}
                     </ul>
                 </div>
-            </div>       
+            </div>
         </div >
     );
 };
