@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import app from '../../firebase/firebase.config';
@@ -22,8 +22,14 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+    const getName = (name) => {
+        return updateProfile(auth.currentUser, {
+             displayName: name
+           })
+        }
+
     const logOut = () =>{
-        localStorage.removeItem('genius-token');
+        // localStorage.removeItem('genius-token');
         return signOut(auth);
     }
 
@@ -40,7 +46,7 @@ const AuthProvider = ({children}) => {
     }, [])
 
     const authInfo = {
-        createUser,login,logOut,user, loading
+        createUser,login,logOut,user, loading, getName
     }
 
     return (

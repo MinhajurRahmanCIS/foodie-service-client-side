@@ -5,7 +5,47 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 const Checkout = () => {
     const { user } = useContext(AuthContext);
     const checkout = useLoaderData();
-    const { title, img, description, price } = checkout;
+    const { _id, title, img, description, price } = checkout;
+
+    const handlePlaceReview= event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = user?.email || 'unregistered';
+        const msg = form.msg.value;
+        const name = form.name.value;
+
+        const review = {
+            checkout: _id,
+            checkoutName: title,
+            price, img,
+            customer: name,email,
+            msg
+        }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.acknowledged){
+                    alert('Review placed successfully')
+                    form.reset();
+                }
+            })
+            .catch(er => console.error(er));
+
+
+    }
+
+
+
+
     return (
         <div className="card lg:card-side bg-base-300 shadow-xl mb-10 mt-5">
             <figure><img className='w-96' src={img} alt="Album" /></figure>
@@ -18,15 +58,20 @@ const Checkout = () => {
                 {
                     user?.email ?
                         <>
+                            <form onSubmit={handlePlaceReview}>
                             <h2 className='text-2xl text-secondary'>Review</h2>
-                            <textarea className="textarea textarea-secondary w-full" placeholder={`Tell us about ${title}`}></textarea>
+                            <input type="text" name="name" placeholder="Type Name" className="input input-bordered input-secondary w-full max-w-xs my-5" />
+                            <textarea type="text" name="msg" className="textarea textarea-secondary w-full" placeholder={`Tell us about ${title}`} required></textarea>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-secondary mt-4">Submit</button>
+                                <button className="btn btn-secondary mt-4" type="submit" >Submit</button>
                             </div>
+                            </form>
                         </>
                         :
                         <>
-                            <Link to='/login'> <button className="btn btn-primary">Please Login First to review</button></Link>
+                            <Link to='/login'> 
+                            <button className="btn btn-primary">Please Login First to review</button>
+                            </Link>
                         </>
 
                 }

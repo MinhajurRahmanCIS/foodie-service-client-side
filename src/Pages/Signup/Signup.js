@@ -7,24 +7,29 @@ import img from '../../assets/signup/images.jpeg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext);
-    const handleSignUp = event =>{
+    const { createUser, getName } = useContext(AuthContext);
+    const handleSignUp = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        
+
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            form.reset();
-            toast.success("Successfully created Account!");
-        })
-        .catch(err =>{ 
-            console.error(err);
-            toast.error("Already have account. Try to login!");
-        });
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                getName(name)
+                    .then(() => { })
+                    .catch((error) => { });
+                toast.success("Successfully created Account!");
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error("Already have account. Try to login!");
+            });
+
     }
 
     return (
@@ -40,7 +45,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered"required/>
+                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -57,7 +62,7 @@ const SignUp = () => {
                             <ToastContainer />
                         </div>
                     </form>
-                    <p className='text-center'>Already have an account? <Link className='text-pink-500 font-bold' to="/login">Login</Link> </p>
+                    <p className='text-center'>Already have an account? <Link className='text-pink-500 font-bold' to="/login">Login</Link></p>
                 </div>
             </div>
         </div>
