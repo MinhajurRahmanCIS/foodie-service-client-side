@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 import img from '../../assets/signup/images.jpeg'
@@ -18,8 +19,12 @@ const SignUp = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            toast.success("Successfully created Account!");
         })
-        .catch(err => console.error(err));
+        .catch(err =>{ 
+            console.error(err);
+            toast.error("Already have account. Try to login!");
+        });
     }
 
     return (
@@ -35,7 +40,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered" />
+                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered"required/>
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -44,14 +49,12 @@ const SignUp = () => {
                             <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
 
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Sign Up" />
+                            <ToastContainer />
                         </div>
                     </form>
                     <p className='text-center'>Already have an account? <Link className='text-pink-500 font-bold' to="/login">Login</Link> </p>

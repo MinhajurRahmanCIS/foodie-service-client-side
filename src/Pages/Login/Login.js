@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import img from '../../assets/login/login.svg'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
@@ -19,8 +20,12 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            toast.success("Successfully Login to your Account!");
         })
-        .then(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            toast.error("User Email or password doesn't exit's");
+        });
     }
 
     return (
@@ -41,15 +46,13 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
-                            <label className="label">
-                                <Link href="#" className="label-text-alt link link-hover">Forgot password?</Link>
-                            </label>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
                     </form>
                     <p className='text-center'>New to Foodie Service! <Link className='text-pink-500 font-bold' to="/signup">Sign Up</Link> </p>
+                    <ToastContainer />
                 </div>
                 <div className="text-center lg:text-left">
                     <img className='w-3/4' src={img} alt="" />

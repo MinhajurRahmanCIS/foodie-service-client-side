@@ -1,9 +1,10 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
-const Reviews = () => {
+const Reviews = () => {;
     return (
         <div>
-            <h2>Reviews</h2>
+            <h1>Review</h1>
         </div>
     );
 };

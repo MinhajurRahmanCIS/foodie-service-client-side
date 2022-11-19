@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.png'
+import img from '../../../assets/userIcon.png'
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -11,24 +12,37 @@ const Header = () => {
             .catch();
     }
     const menuItems = <>
-        <li className='font-semibold'><Link to='/'>Home</Link></li>
-        <li className='font-semibold'><Link to='/'>Blog</Link></li>
-        
+
+        {
+            user?.email ?
+                <>
+                    <li className='font-semibold'><Link to='/'>Home</Link></li>
+                    <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
+                    <li className='font-semibold'><Link to='/blog'>Blog</Link></li>
+                </>
+                :
+                <>
+                    <li className='font-semibold'><Link to='/'>Home</Link></li>
+                    <li className='font-semibold'><Link to='/blog'>Blog</Link></li>
+                </>
+
+        }
+
+
     </>
 
     const account = <>
         {
             user?.email ?
                 <>
-                    <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
                     <li><Link onClick={handleLogOut}>Logout</Link></li>
                 </>
                 :
-                <> 
-                <li><Link to='/login'>Login</Link></li>
-                <li><Link to='/signup'>Signup</Link></li>
+                <>
+                    <li><Link to='/login'>Login</Link></li>
+                    <li><Link to='/signup'>Signup</Link></li>
                 </>
-               
+
         }
     </>
 
@@ -57,11 +71,10 @@ const Header = () => {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png" alt='' />
+                            <img src={img} alt="" />
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                      
                         {account}
                     </ul>
                 </div>
