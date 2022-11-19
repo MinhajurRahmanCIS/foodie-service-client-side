@@ -14,7 +14,7 @@ const ServiceDisplay = () => {
     return (
         <div className='mb-10'>
             <div className='text-center mb-8'>
-                <p className="text-4xl font-bold text-red-600">Service</p>
+                <p className="text-4xl font-bold text-accent">Service</p>
                 <h2 className="text-5xl font-semibold">Our Foodie Service</h2>
             </div>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
@@ -23,10 +23,10 @@ const ServiceDisplay = () => {
                         <figure><img src={service.img} alt="service" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{service.title}</h2>
-                            <p className='text-2xl text-red-600 font-semibold'>Price: ${service.price} </p>
+                            <p className='text-2xl text-indigo-400 font-semibold'>Price: ${service.price} </p>
                             <div className="card-actions justify-end">
                                 <Link to={`/checkout/${service._id}`}>
-                                    <button className="btn btn-primary">Review</button>
+                                    <button className="btn btn-secondary">Review</button>
                                 </Link>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ const ServiceDisplay = () => {
                 }
             </div>
             <div className='text-center mt-8'>
-                <Link to='/services'> <button className="btn btn-outline btn-error">See all</button></Link>
+                <Link to='/services'> <button className="btn btn-outline btn-secondary">See all</button></Link>
             </div>
         </div>
     );

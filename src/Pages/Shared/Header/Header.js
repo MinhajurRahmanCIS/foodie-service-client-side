@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.png'
 import img from '../../../assets/userIcon.png'
+import noimg from '../../../assets/userIconNotActive.png'
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -70,8 +71,15 @@ const Header = () => {
             <div className="navbar-end">
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src={img} alt="" />
+                        <div className="w-10 rounded-full tooltip" data-tip="hello">
+                            {
+                                user?.email ?
+                                    <img src={img} alt="" />
+                                    :
+                                    <img src={noimg} alt="" />
+
+                            }
+
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">

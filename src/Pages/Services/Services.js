@@ -10,7 +10,6 @@ const Services = () => {
             .then(data => setServices(data))
     }, []);
     return (
-        <div>
             <div className='mb-10'>
                 <div className='text-center mb-10'>
                     <h2 className="text-5xl font-semibold">Our Foodie Service</h2>
@@ -21,10 +20,10 @@ const Services = () => {
                             <figure><img src={service.img} alt="service" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{service.title}</h2>
-                                <p className='text-2xl text-red-600 font-semibold'>Price: ${service.price} </p>
+                                <p className='text-2xl text-indigo-400 font-semibold'>Price: ${service.price} </p>
                                 <div className="card-actions justify-end">
                                     <Link to={`/checkout/${service._id}`}>
-                                        <button className="btn btn-primary">Review</button>
+                                        <button className="btn btn-secondary">Review</button>
                                     </Link>
                                 </div>
                             </div>
@@ -32,7 +31,7 @@ const Services = () => {
                     }
                 </div>
             </div>
-        </div>
+
     );
 };
 
