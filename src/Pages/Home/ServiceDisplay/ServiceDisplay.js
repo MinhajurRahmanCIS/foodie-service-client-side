@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 const ServiceDisplay = () => {
 
     const [services, setServices] = useState([]);
@@ -14,13 +15,19 @@ const ServiceDisplay = () => {
     return (
         <div className='mb-10'>
             <div className='text-center mb-8'>
-                <p className="text-4xl font-bold text-accent">Service</p>
+                <p className="text-4xl font-bold text-indigo-300">Service</p>
                 <h2 className="text-5xl font-semibold">Our Foodie Service</h2>
             </div>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     services.map(service => <div key={service._id} className="card card-compact w-96 bg-base-100 shadow-xl">
-                        <figure><img src={service.img} alt="service" /></figure>
+                        <figure>
+                            <PhotoProvider>
+                                <PhotoView src={service.img}>
+                                    <img src={service.img} alt="" />
+                                </PhotoView>
+                            </PhotoProvider>
+                        </figure>
                         <div className="card-body">
                             <h2 className="card-title">{service.title}</h2>
                             <p className='text-2xl text-indigo-400 font-semibold'>Price: ${service.price} </p>
