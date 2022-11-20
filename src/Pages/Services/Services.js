@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-const Services = () => {
-    const [services, setServices] = useState([]);
 
+const Services = () => {
+    
+    const [services, setServices] = useState([]);
     console.log(services)
     useEffect(() => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => {
+                setServices(data)
+            })
     }, []);
 
 
@@ -18,6 +21,14 @@ const Services = () => {
             <div className='text-center mb-10'>
                 <h2 className="text-5xl font-semibold">Our Foodie Service</h2>
             </div>
+            {
+               services.length === 0 ?
+               <div className='justify-center items-center flex'>
+                <img className='w-20' src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="" />
+                </div>
+                :
+               <></>
+            }
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     services.map(service => <div key={service._id} className="card card-compact w-96 bg-base-100 shadow-xl">

@@ -16,10 +16,8 @@ const Checkout = () => {
 
         const review = {
             checkout: _id,
-            checkoutName: title,
-            price, img,
-            customer: name,email,
-            msg
+            checkoutName: title, price, img,
+            customer: name, email,msg
         }
 
         fetch('http://localhost:5000/reviews', {

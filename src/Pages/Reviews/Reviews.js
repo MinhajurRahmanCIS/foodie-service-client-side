@@ -34,7 +34,7 @@ const Reviews = () => {
             {
                 reviews.length === 0 ?
                     <>
-                        <h1 className='text-3xl text-purple-500 my-5'>No Reviews</h1>
+                        <h1 className='text-3xl text-purple-500 my-5'>No Reviews Were Added</h1>
                     </>
                     :
                     <>

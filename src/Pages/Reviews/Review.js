@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-
+import 'react-photo-view/dist/react-photo-view.css';
 import { ImCross } from "react-icons/im";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Review = ({ review, handleDelete}) => {
     const { _id, checkoutName, customer, price, checkout, msg } = review;
@@ -26,7 +27,13 @@ const Review = ({ review, handleDelete}) => {
                         <div className="rounded w-24 h-24">
                             {
                                 reviewService?.img &&
-                                <img src={reviewService.img} alt="Avatar Tailwind CSS Component" />}
+                              
+                                <PhotoProvider>
+                                <PhotoView src={reviewService.img}>
+                                <img src={reviewService.img} alt="Avatar Tailwind CSS Component" />
+                                </PhotoView>
+                            </PhotoProvider>
+                                }
                         </div>
                     </div>
 
