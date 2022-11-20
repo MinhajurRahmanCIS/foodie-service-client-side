@@ -3,34 +3,20 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import Review from './Review';
 
 const Reviews = () => {
-    const { user, logOut } = useContext(AuthContext);
-    const [reviews, setReviews] = useState([])
+    const { user } = useContext(AuthContext);
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-            headers: {
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return logOut();
-                }
-                return res.json();
-            })
-            .then(data => {
-                setReviews(data);
-            })
-    }, [user?.email, logOut])
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [user?.email])
 
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to cancel this order');
         if (proceed) {
             fetch(`http://localhost:5000/reviews/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('genius-token')}`
-                }
             })
                 .then(res => res.json())
                 .then(data => {
@@ -43,38 +29,24 @@ const Reviews = () => {
         }
     }
 
-    const handleStatusUpdate = id => {
-        fetch(`http://localhost:5000/reviews/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('genius-token')}`
-            },
-            body: JSON.stringify({ status: 'Approved' })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
-                    const remaining = reviews.filter(odr => odr._id !== id);
-                    const approving = reviews.find(odr => odr._id === id);
-                    approving.status = 'Approved'
-
-                    const newReviews = [approving, ...remaining];
-                    setReviews(newReviews);
-                }
-            })
-    }
     return (
         <div className='mb-8'>
-            <h2 className="text-5xl mb-4">Total Reviews {reviews.length} </h2>
+            {
+                reviews.length === 0 ?
+                    <>
+                        <h1 className='text-3xl text-purple-500 my-5'>No Reviews</h1>
+                    </>
+                    :
+                    <>
+                        <h2 className="text-5xl mb-4">Total Reviews {reviews.length} </h2></>
+            }
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th>
                             </th>
-                           
+
                             <th></th>
                             <th>Item Name</th>
                             <th>Customer Name</th>
@@ -85,28 +57,17 @@ const Reviews = () => {
                     </thead>
                     <tbody>
                         {
-                            reviews.length === 0 ?
-                            <>
-                            <h2 className='text-3xl text-purple-500 mt-5'>No Reviews</h2>
-                            </>
-                            :
-                            <>
-                             {
                             reviews.map(review => <Review
                                 key={review._id}
                                 review={review}
-                                handleDelete={handleDelete}
-                                handleStatusUpdate={handleStatusUpdate}>
+                                handleDelete={handleDelete}>
 
                             </Review>)
-                        }
-                            
-                            </>
                         }
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 
