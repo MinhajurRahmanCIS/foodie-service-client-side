@@ -32,7 +32,7 @@ const Services = () => {
                             <p className='text-2xl text-indigo-400 font-semibold'>Price: ${service.price} </p>
                             <div className="card-actions justify-end">
                                 <Link to={`/checkout/${service._id}`}>
-                                    <button className="btn btn-secondary">Review</button>
+                                    <button className="btn btn-secondary">View details</button>
                                 </Link>
                             </div>
                         </div>

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
+import { ImCross } from "react-icons/im";
+import { Link } from 'react-router-dom';
+
 const Review = ({ review, handleDelete, handleStatusUpdate }) => {
-    const { _id, checkoutName, customer, price, checkout, img} = review;
+    const { _id, checkoutName, customer, price, checkout, msg } = review;
     const [reviewService, setReviewService] = useState({})
     console.log(reviewService)
     useEffect(() => {
@@ -13,7 +16,8 @@ const Review = ({ review, handleDelete, handleStatusUpdate }) => {
         <tr>
             <th>
                 <label>
-                    <button onClick={() => handleDelete(_id)} className='btn btn-ghost'>X</button>
+                    <Link>
+                    <button onClick={() => handleDelete(_id)} className='btn btn-ghost'><ImCross/> </button></Link>
                 </label>
             </th>
             <td>
@@ -22,18 +26,21 @@ const Review = ({ review, handleDelete, handleStatusUpdate }) => {
                         <div className="rounded w-24 h-24">
                             {
                                 reviewService?.img &&
-                                <img src={reviewService.img} alt="Avatar Tailwind CSS Component"  />}
+                                <img src={reviewService.img} alt="Avatar Tailwind CSS Component" />}
                         </div>
                     </div>
-                    <div>
-                        <div className="font-bold">{customer}</div>
-                    </div>
+
                 </div>
             </td>
             <td>
-                
-                <span className="badge badge-ghost badge-sm">{checkoutName}</span>
+                <span className="badge badge-ghost badge-sm font-semibold">{checkoutName}</span>
             </td>
+            <td>
+                <div>
+                    <div className="font-bold">{customer}</div>
+                </div>
+            </td>
+            <td>{msg.slice(0, 10) + "..."}</td>
             <td>${price}</td>
         </tr>
     );

@@ -66,22 +66,32 @@ const Reviews = () => {
             })
     }
     return (
-        <div>
-            <h2 className="text-5xl">You have {reviews.length} Orders</h2>
+        <div className='mb-8'>
+            <h2 className="text-5xl mb-4">Total Reviews {reviews.length} </h2>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th>
                             </th>
-                            <th>Name</th>
-                            <th>Item</th>
+                           
+                            <th></th>
+                            <th>Item Name</th>
+                            <th>Customer Name</th>
+                            <th>Message</th>
                             <th>Price</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {
+                            reviews.length === 0 ?
+                            <>
+                            <h2 className='text-3xl text-purple-500 mt-5'>No Reviews</h2>
+                            </>
+                            :
+                            <>
+                             {
                             reviews.map(review => <Review
                                 key={review._id}
                                 review={review}
@@ -89,6 +99,9 @@ const Reviews = () => {
                                 handleStatusUpdate={handleStatusUpdate}>
 
                             </Review>)
+                        }
+                            
+                            </>
                         }
                     </tbody>
                 </table>

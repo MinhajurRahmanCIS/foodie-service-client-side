@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.png'
 import img from '../../../assets/userIcon.png'
-import noimg from '../../../assets/userIconNotActive.png'
+import noImg from '../../../assets/userIconNotActive.png'
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -19,6 +19,7 @@ const Header = () => {
                 <>
                     <li className='font-semibold'><Link to='/'>Home</Link></li>
                     <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
+                    <li className='font-semibold'><Link to='/addNewService'>Add Service</Link></li>
                     <li className='font-semibold'><Link to='/blog'>Blog</Link></li>
                 </>
                 :
@@ -76,7 +77,7 @@ const Header = () => {
                                 user?.email ?
                                     <img src={img} alt="" />
                                     :
-                                    <img src={noimg} alt="" />
+                                    <img src={noImg} alt="" />
 
                             }
 
