@@ -18,7 +18,6 @@ const Header = () => {
             user?.email ?
                 <>
                     <li className='font-semibold'><Link to='/'>Home</Link></li>
-                    <li className='font-semibold'><Link to='/services'>Service</Link></li>
                     <li className='font-semibold'><Link to='/reviews'>Reviews</Link></li>
                     <li className='font-semibold'><Link to='/addNewService'>Add Service</Link></li>
                     <li className='font-semibold'><Link to='/blog'>Blog</Link></li>
@@ -26,7 +25,6 @@ const Header = () => {
                 :
                 <>
                     <li className='font-semibold'><Link to='/'>Home</Link></li>
-                    <li className='font-semibold'><Link to='/services'>Service</Link></li>
                     <li className='font-semibold'><Link to='/blog'>Blog</Link></li>
                 </>
 
