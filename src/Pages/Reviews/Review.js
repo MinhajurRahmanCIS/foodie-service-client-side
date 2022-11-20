@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { ImCross } from "react-icons/im";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Review = ({ review, handleDelete}) => {
     const { _id, checkoutName, customer, price, checkout, msg } = review;

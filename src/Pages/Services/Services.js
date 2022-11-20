@@ -4,6 +4,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 const Services = () => {
     const [services, setServices] = useState([]);
+
     console.log(services)
     useEffect(() => {
         fetch('http://localhost:5000/services')

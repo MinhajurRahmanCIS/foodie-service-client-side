@@ -2,30 +2,33 @@ import React, { useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import img from '../../assets/login/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-    
-    const {login} = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
-    const handleLogin = event =>{
+    const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
         login(email, password)
-        .then( result => {
-            const user = result.user;
-            console.log(user);
-            form.reset();
-            toast.success("Successfully Login to your Account!");
-        })
-        .catch(error => {
-            console.log(error);
-            toast.error("User Email or password doesn't exit's");
-        });
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                toast.success("Successfully Login to your Account!");
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error("User Email or password doesn't exit's");
+            });
     }
 
     return (
@@ -39,13 +42,13 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name='email' placeholder="email" className="input input-bordered" />
+                            <input type="email" name='email' placeholder="Email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" />
+                            <input type="password" name='password' placeholder="Password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />

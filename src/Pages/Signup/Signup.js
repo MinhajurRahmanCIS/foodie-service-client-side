@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import img from '../../assets/signup/images.jpeg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const { createUser, getName } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleSignUp = event => {
         event.preventDefault();
         const form = event.target;
@@ -20,10 +21,12 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                
                 getName(name)
                     .then(() => { })
                     .catch((error) => { });
-                toast.success("Successfully created Account!");
+                    navigate('/');
+                    toast.success("Successfully created Account!");
             })
             .catch(err => {
                 console.error(err);
@@ -45,16 +48,19 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name='name' placeholder="Your Name" className="input input-bordered" required />
+                            <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                            <input type="email" name='email' placeholder="Email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input type="password" name='password' placeholder="Password" className="input input-bordered" required />
 
                         </div>
                         <div className="form-control mt-6">
