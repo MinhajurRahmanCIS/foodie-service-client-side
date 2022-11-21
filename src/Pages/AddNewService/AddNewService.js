@@ -10,7 +10,6 @@ const AddNewService = () => {
         const img = form.img.value;
         const description = form.description.value;
         const price = form.price.value;
-        console.log(title, price, description, img)
         const service = {
             title,
             img,
@@ -18,7 +17,7 @@ const AddNewService = () => {
             price
         }
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://foodie-service-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

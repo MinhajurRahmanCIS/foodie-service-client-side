@@ -9,7 +9,7 @@ const ReviewUpdate = () => {
     const handleUpdateUser = event => {
         event.preventDefault();
         // console.log(user);
-        fetch(`http://localhost:5000/reviews/${update._id}`, {
+        fetch(`https://foodie-service-server.vercel.app/reviews/${update._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({params})=> fetch(`https://foodie-service-server.vercel.app/services/${params.id}`),
                 element: <Checkout></Checkout>
             },
             {
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/reviewUpdate/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`),
+                loader: ({params}) => fetch(`https://foodie-service-server.vercel.app/reviews/${params.id}`),
                 element: <PrivateRoute><ReviewUpdate></ReviewUpdate></PrivateRoute>
             },
 

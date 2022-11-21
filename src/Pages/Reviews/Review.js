@@ -9,7 +9,7 @@ const Review = ({ review, handleDelete}) => {
     const { _id, checkoutName, customer, price, checkout, msg } = review;
     const [reviewService, setReviewService] = useState({})
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${checkout}`)
+        fetch(`https://foodie-service-server.vercel.app/services/${checkout}`)
             .then(res => res.json())
             .then(data => setReviewService(data));
     }, [checkout])
