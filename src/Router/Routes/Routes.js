@@ -62,7 +62,12 @@ const router = createBrowserRouter([
 
             
         ]
+    },
+    {
+        path: '*',
+        element: <div className="text-center"><h1 className="text-5xl text-red-600">Error 404!!</h1> <p className="text-3xl text-yellow-400">Something Wrong happen!!!</p></div>
     }
+
 ]);
 
 export default router;
