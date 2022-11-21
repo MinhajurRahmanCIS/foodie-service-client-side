@@ -1,6 +1,8 @@
 import React from 'react';
+import useTitle from '../../TitleView/useTitle';
 
 const Blog = () => {
+    useTitle("Blog")
     return (
         <div>
             <div className="hero bg-base-300 mb-10">

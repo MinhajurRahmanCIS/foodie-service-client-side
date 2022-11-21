@@ -5,8 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import img from '../../assets/signup/images.jpeg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import useTitle from '../../TitleView/useTitle';
 
 const SignUp = () => {
+    useTitle("Signup")
     const { createUser, getName } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleSignUp = event => {

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import useTitle from '../../TitleView/useTitle';
 
 const ReviewUpdate = () => {
+    useTitle("Review Update");
     const update = useLoaderData();
     const [review, setReview] = useState(update);
 

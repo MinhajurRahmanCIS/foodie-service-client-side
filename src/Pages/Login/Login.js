@@ -5,7 +5,9 @@ import img from '../../assets/login/login.svg'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FcGoogle } from 'react-icons/fc';
+import useTitle from '../../TitleView/useTitle';
 const Login = () => {
+    useTitle("Login")
     const { login, signInWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();

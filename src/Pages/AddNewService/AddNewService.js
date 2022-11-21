@@ -1,8 +1,9 @@
 import React from 'react';
 import { MdOutlineFoodBank } from 'react-icons/md';
 import { toast, ToastContainer } from 'react-toastify';
+import useTitle from '../../TitleView/useTitle';
 const AddNewService = () => {
-
+    useTitle("Add New Service")
     const handelAddService = event => {
         event.preventDefault();
         const form = event.target;
