@@ -52,7 +52,7 @@ const Reviews = () => {
                             <th>Customer Name</th>
                             <th>Message</th>
                             <th>Price</th>
-                            <th></th>
+                            <th>Update Review</th>
                         </tr>
                     </thead>
                     <tbody>

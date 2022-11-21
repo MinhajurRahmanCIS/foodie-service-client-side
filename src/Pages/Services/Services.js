@@ -6,7 +6,6 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 const Services = () => {
     
     const [services, setServices] = useState([]);
-    console.log(services)
     useEffect(() => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
@@ -31,7 +30,7 @@ const Services = () => {
             }
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-                    services.map(service => <div key={service._id} className="card card-compact w-96 bg-base-100 shadow-xl">
+                    services.map(service => <div key={service._id} className="card card-compact w-96 bg-base-300 shadow-xl">
                         <figure>
                             <PhotoProvider>
                                 <PhotoView src={service.img}>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import { ImCross } from "react-icons/im";
+import { GrUpdate } from 'react-icons/gr';
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Review = ({ review, handleDelete}) => {
     const { _id, checkoutName, customer, price, checkout, msg } = review;
     const [reviewService, setReviewService] = useState({})
-    console.log(reviewService)
     useEffect(() => {
         fetch(`http://localhost:5000/services/${checkout}`)
             .then(res => res.json())
@@ -49,6 +49,7 @@ const Review = ({ review, handleDelete}) => {
             </td>
             <td>{msg.slice(0, 10) + "..."}</td>
             <td>${price}</td>
+            <td><Link to={`/reviewUpdate/${_id}`}><GrUpdate/></Link></td>
         </tr>
     );
 };

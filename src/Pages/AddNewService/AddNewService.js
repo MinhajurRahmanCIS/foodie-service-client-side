@@ -10,7 +10,7 @@ const AddNewService = () => {
         const img = form.img.value;
         const description = form.description.value;
         const price = form.price.value;
-        console.log(title, price , description, img)
+        console.log(title, price, description, img)
         const service = {
             title,
             img,
@@ -43,37 +43,37 @@ const AddNewService = () => {
         <div className="hero min-h-screen bg-base-300 mb-10">
             <div className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
                 <form onSubmit={handelAddService}>
-                <div  className="card-body">
-                    <h2 className='text-3xl text-purple-200 font-bold'><MdOutlineFoodBank />Add New Service</h2>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Title</span>
-                        </label>
-                        <input type="text" placeholder="Enter Item Title" className="input input-bordered input-secondary" name='title' required />
+                    <div className="card-body">
+                        <h2 className='text-3xl text-purple-200 font-bold'><MdOutlineFoodBank />Add New Service</h2>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Title</span>
+                            </label>
+                            <input type="text" placeholder="Enter Item Title" className="input input-bordered input-secondary" name='title' required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Image URL</span>
+                            </label>
+                            <input type="text" placeholder="Please Enter Image URL" className="input input-bordered input-secondary" name='img' required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Description</span>
+                            </label>
+                            <textarea className="textarea textarea-secondary p-2" type="text" placeholder="Enter Description" name='description' required></textarea>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Price</span>
+                            </label>
+                            <input type="number" placeholder="Enter Price" className="input input-bordered input-secondary" name='price' required />
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-secondary">Add Service</button>
+                            <ToastContainer />
+                        </div>
                     </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Image URL</span>
-                        </label>
-                        <input type="text" placeholder="Please Enter Image URL" className="input input-bordered input-secondary" name='img' required />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Description</span>
-                        </label>
-                        <textarea className="textarea textarea-secondary p-2" type="text" placeholder="Enter Description" name='description' required></textarea>
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Price</span>
-                        </label>
-                        <input type="number" placeholder="Enter Price" className="input input-bordered input-secondary" name='price' required />
-                    </div>
-                    <div className="form-control mt-6">
-                        <button className="btn btn-secondary">Add Service</button>
-                        <ToastContainer/>
-                    </div>
-                </div>
                 </form>
             </div>
         </div>
