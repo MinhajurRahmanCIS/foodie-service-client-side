@@ -43,7 +43,7 @@ const Reviews = () => {
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
-                        <tr>
+                        <tr className='text-purple-300'>
                             <th>
                             </th>
 

@@ -4,9 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import img from '../../assets/login/login.svg'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
-
+import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, signInWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
@@ -29,6 +29,18 @@ const Login = () => {
                 console.log(error);
                 toast.error("User Email or password doesn't exit's");
             });
+
+    }
+
+    const handelGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success("Successfully Login to your Account!");
+                navigate(from, { replace: true });
+            })
+            .catch(error => console.log(error))
     }
 
     return (
@@ -52,6 +64,10 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />
+                        </div>
+                        <div className="form-control mt-6">
+                            <Link onClick={handelGoogleLogin} className="btn text-3xl"><FcGoogle /></Link>
+
                         </div>
                     </form>
                     <p className='text-center'>New to Foodie Service! <Link className='text-pink-500 font-bold' to="/signup">Sign Up</Link> </p>

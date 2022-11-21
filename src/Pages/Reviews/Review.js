@@ -49,7 +49,7 @@ const Review = ({ review, handleDelete}) => {
             </td>
             <td>{msg.slice(0, 10) + "..."}</td>
             <td>${price}</td>
-            <td><Link to={`/reviewUpdate/${_id}`}><GrUpdate/></Link></td>
+            <td><Link className='btn btn-ghost' to={`/reviewUpdate/${_id}`}><GrUpdate/></Link></td>
         </tr>
     );
 };
