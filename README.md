@@ -11,7 +11,7 @@ Project Repository Link For Server side: https://github.com/Porgramming-Hero-web
 # Project Info
 This is a cloud kitchen Foodie Service Website.
 ## Technologies  –
-1.     The Corders site is develop with react library.  
+1.     The Foodie Service site is develop with react library.  
 2.     For the fastest route I used react router framework.
 3.     For the beautiful design and responsive for mobile and tablet I used CSS framework DaisyUI.
 4.     For the icon use the npm react icon its a node package.
